@@ -23,6 +23,7 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const { Specialization } = require('../models/Specialization'); // ✅ Correct relative path
+const {Staff} = require('../models/Staff')
 
 
 dotenv.config();
@@ -40,6 +41,16 @@ const specializations = [
   { specialization: 'General Surgery', detail: 'Common surgical procedures' },
 ];
 
+const staff={
+  "name": "AdminUser",
+  "email": "admin@hospital.com",
+  "password": "admin123",
+  "phone": "9876543210",
+  "gender": "Female",
+  "position": "Admin",
+  "salary": 85000
+}
+
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
@@ -50,6 +61,11 @@ const connectDB = async () => {
       console.log("Specializations Deleted Successfully");
       await Specialization.insertMany(specializations);
       console.log('🌱 Specializations seeded successfully');
+      
+      await Staff.deleteMany({});
+      console.log("All the Staff were removed");
+      await Staff.create(staff);
+      console.log("Admin Staff Inserted")
   } catch (error) {
     console.error('❌ MongoDB connection failed:', error.message);
     process.exit(1);
