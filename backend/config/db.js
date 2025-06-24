@@ -17,14 +17,10 @@
 // // Export module as connectDB
 // module.exports = connectDB;
  
-
-// db.js
-
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const { Specialization } = require('../models/Specialization'); // ✅ Correct relative path
-const {Staff} = require('../models/Staff')
-
+const { Specialization } = require('../models/Specialization');
+const { Staff } = require('../models/Staff');
 
 dotenv.config();
 
@@ -41,31 +37,37 @@ const specializations = [
   { specialization: 'General Surgery', detail: 'Common surgical procedures' },
 ];
 
-const staff={
-  "name": "AdminUser",
-  "email": "admin@hospital.com",
-  "password": "admin123",
-  "phone": "9876543210",
-  "gender": "Female",
-  "position": "Admin",
-  "salary": 85000
-}
+const staff = {
+  name: "AdminUser",
+  email: "admin@hospital.com",
+  password: "admin123",
+  phone: "9876543210",
+  gender: "Female",
+  position: "Admin",
+  salary: 85000
+};
 
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
     console.log('✅ MongoDB connected');
 
-    // 🌱 Seed specializations only if none exist
-      await Specialization.deleteMany({});
-      console.log("Specializations Deleted Successfully");
+    const specCount = await Specialization.countDocuments();
+    if (specCount === 0) {
       await Specialization.insertMany(specializations);
       console.log('🌱 Specializations seeded successfully');
-      
-      await Staff.deleteMany({});
-      console.log("All the Staff were removed");
+    } else {
+      console.log(`✅ Specializations already exist (${specCount} entries). Skipping seeding.`);
+    }
+
+    const existingAdmin = await Staff.findOne({ email: staff.email });
+    if (!existingAdmin) {
       await Staff.create(staff);
-      console.log("Admin Staff Inserted")
+      console.log('✅ Admin staff created');
+    } else {
+      console.log('✅ Admin staff already exists. Skipping creation.');
+    }
+
   } catch (error) {
     console.error('❌ MongoDB connection failed:', error.message);
     process.exit(1);
@@ -73,3 +75,4 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
+
