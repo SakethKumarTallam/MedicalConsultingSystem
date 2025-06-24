@@ -108,15 +108,13 @@
 // exports.Patient = mongoose.model('Patient', patientSchema);
 // exports.patientSchema = patientSchema;
 
-
 const mongoose = require('mongoose');
 
 const patientSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
-    trim: true,
+    trim: true, // Removed unique because Google users may share names
   },
   email: {
     type: String,
@@ -128,14 +126,23 @@ const patientSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  firebaseUid: {
+    type: String,
+    default: null,
+  },
+  photo: {
+    type: String,
+    default: '',
+  },
   phone: {
     type: String,
-    required: true,
+    default: '',
   },
   gender: {
     type: String,
     required: true,
-    enum: ['Male', 'Female'],
+    enum: ['Male', 'Female', 'Not specified'],
+    default: 'Not specified',
   },
   birthdate: {
     type: Date,

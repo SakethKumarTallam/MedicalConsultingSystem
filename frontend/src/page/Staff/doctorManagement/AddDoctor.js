@@ -339,7 +339,9 @@ const handleSubmit = async (e) => {
   }
 
   // Find the selected specialization object from the list
-  const selectedSpec = specialization.data.find((spec) => spec.id === SP);
+  // const selectedSpec = specialization.data.find((spec) => spec.id === SP);
+  const selectedSpec = specialization.data.find((spec) => spec._id === SP);
+
 
   // Fallback to specialization.detail if SD is empty
   const specializationDetailValue = SD?.trim() || selectedSpec?.detail || '';
@@ -347,7 +349,9 @@ const handleSubmit = async (e) => {
   let formData = new FormData();
   formData.append('name', name);
   formData.append('gender', gender);
-  formData.append('specialization', SP);
+  // formData.append('specialization', SP);
+  formData.append('specialization', String(SP));
+
   formData.append('password', password);
   formData.append('email', email);
   formData.append('phone', phone);

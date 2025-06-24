@@ -11,6 +11,8 @@ router
   .get(jwt.userVerify(['doctor', 'staff']), patient.getAllPatient) // get all patient
   .post(jwt.userVerify(['patient', 'doctor', 'staff']), patient.createPatient); // create patient
 
+router.route('/firebase-login').post(patient.firebaseLogin); // Google Firebase login
+
 // path = "/:id"
 router
   .route('/:id')
@@ -29,5 +31,6 @@ router
 
 router.route('/register').post(patient.createPatient); // register patient route
 router.route('/login').post(patient.patientLogin); // patient login route
+
 
 module.exports = router;
