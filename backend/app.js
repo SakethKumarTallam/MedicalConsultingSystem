@@ -77,7 +77,7 @@ dotenv.config({ path: './config.env' });
 const corsOptions = {
   origin: [
     'http://localhost:3000',
-    'https://your-frontend.vercel.app'
+    'https://medical-consulting-system-bgeb4rhqo-sakethkumartallams-projects.vercel.app/'
   ],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   credentials: true,
@@ -89,7 +89,7 @@ const io = require('socket.io')(server, {
   cors: {
     origin: [
       'http://localhost:3000',
-      'https://your-frontend.vercel.app',
+      'https://medical-consulting-system-bgeb4rhqo-sakethkumartallams-projects.vercel.app/',
     ],
     methods: ['GET', 'POST'],
     credentials: true,
