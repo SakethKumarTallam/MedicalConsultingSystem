@@ -287,19 +287,32 @@ const Call = ({ match }) => {
   }, [match.params.id,user.name,type]);
 
   const mute = () => {
-    const enabled = stream?.getAudioTracks()[0]?.enabled;
-    if (enabled !== undefined) {
-      stream.getAudioTracks()[0].enabled = !enabled;
-      setMute(!enabled);
-    }
+    // const enabled = stream?.getAudioTracks()[0]?.enabled;
+    // if (enabled !== undefined) {
+    //   stream.getAudioTracks()[0].enabled = !enabled;
+    //   setMute(!enabled);
+    // }
+
+    if (!stream) return;
+    const audioTrack = stream.getAudioTracks()[0];
+    audioTrack.enabled = !audioTrack.enabled;
+    setMute(!audioTrack.enabled);
+
+
   };
 
   const videoControl = () => {
-    const enabled = stream?.getVideoTracks()[0]?.enabled;
-    if (enabled !== undefined) {
-      stream.getVideoTracks()[0].enabled = !enabled;
-      setVideoOff(!enabled);
-    }
+    // const enabled = stream?.getVideoTracks()[0]?.enabled;
+    // if (enabled !== undefined) {
+    //   stream.getVideoTracks()[0].enabled = !enabled;
+    //   setVideoOff(!enabled);
+    // }
+
+    if (!stream) return;
+    const videoTrack = stream.getVideoTracks()[0];
+    videoTrack.enabled = !videoTrack.enabled;
+    setVideoOff(!videoTrack.enabled); // Now this reflects the actual status
+
   };
 
   return (
@@ -308,7 +321,7 @@ const Call = ({ match }) => {
       <div className='flex flex-col lg:flex-row mx-2 lg:mx-6 my-2 min-h-[400px] lg:h-full'>
         {/* User Video */}
         <div
-          className='w-full lg:w-1/2 h-full sm:h-96 lg:h-auto shadow-lg rounded-lg flex flex-col border border-gray-200 p-4 mb-4 lg:mb-0 h-[40vh]'
+          className='w-full lg:w-1/2 h-72 sm:h-96 lg:h-auto shadow-lg rounded-lg flex flex-col border border-gray-200 p-4 mb-4 lg:mb-0 h-[40vh]'
           style={{ backgroundColor: '#B5E3FE' }}
         >
           <p className='text-gray-800 font-semibold mb-2'>You</p>
@@ -320,7 +333,7 @@ const Call = ({ match }) => {
 
         {/* Partner Video */}
         <div
-          className='w-full lg:w-1/2 h-full sm:h-96 lg:h-auto shadow-lg rounded-lg flex flex-col border border-gray-200 p-4 lg:ml-4 h-[40vh]'
+          className='w-full lg:w-1/2 h-72 sm:h-96 lg:h-auto shadow-lg rounded-lg flex flex-col border border-gray-200 p-4 lg:ml-4 h-[40vh]'
           style={{ backgroundColor: '#FFCCD0' }}
         >
           <p className='text-gray-800 font-semibold mb-2'>{partnerLabel}</p>

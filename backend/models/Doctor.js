@@ -96,7 +96,7 @@ const doctorSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    default: `${process.env.REACT_APP_API_URL}/public/img/doctor/default.png`,
+    default: `${process.env.BACKEND_API_URL}/public/img/doctor/default.png`,
 
   },
   specialization: {
