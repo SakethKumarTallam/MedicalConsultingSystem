@@ -6,6 +6,7 @@
     "@craco/craco": "^6.3.0",
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.5",
+    "@tanstack/react-virtual": "^3.0.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -23,11 +24,11 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-  "start": "set NODE_OPTIONS=--openssl-legacy-provider && craco start",
-  "build": "set NODE_OPTIONS=--openssl-legacy-provider && craco build",
-  "test": "craco test",
-  "eject": "react-scripts eject"
-},
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider craco start",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -48,6 +49,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.8",
+    "cross-env": "^7.0.3",
     "postcss": "^7.0.36",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }
