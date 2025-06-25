@@ -73,28 +73,28 @@ const AppError = require('./helpers/appErrors');
 const globalErrorHandler = require('./helpers/error-handler');
 dotenv.config({ path: './config.env' });
 
-// ✅ Fix CORS for both frontend dev + Vercel
 const corsOptions = {
   origin: [
-    'http://localhost:3000',
-    'https://medical-consulting-system-bgeb4rhqo-sakethkumartallams-projects.vercel.app/'
+    'http://localhost:3000', // For local frontend development
+    'https://medical-consulting-system.vercel.app' // Your actual deployed Vercel frontend (no trailing slash!)
   ],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   credentials: true,
 };
 app.use(cors(corsOptions));
 
-// ✅ Socket.IO with CORS
+// ✅ Socket.IO CORS config
 const io = require('socket.io')(server, {
   cors: {
     origin: [
       'http://localhost:3000',
-      'https://medical-consulting-system-bgeb4rhqo-sakethkumartallams-projects.vercel.app/',
+      'https://medical-consulting-system.vercel.app' // Must match exactly
     ],
     methods: ['GET', 'POST'],
     credentials: true,
   },
 });
+
 
 // DB connection
 const connectDB = require('./config/db');
