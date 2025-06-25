@@ -93,7 +93,7 @@ const Call = ({match}) => {
   if (stream) {
     UserVideo = (
       <video
-        className='w-auto rounded-3xl'
+        className='w-full rounded-3xl'
         playsInline
         muted
         ref={userVideo}
@@ -134,72 +134,147 @@ const Call = ({match}) => {
     }
   };
 
-  return (
-    <div>
-      <div className='h-screen overflow-auto bg-gray-100 p-4'>
-        <div className='flex content-center mx-6 my-2 h-5/6'>
-          <div
-            className='w-1/2 h- lg:shadow-lg rounded-lg flex lg:border-r border-gray-200 p-4 '
-            style={{backgroundColor: '#B5E3FE'}}
-          >
-            {UserVideo}
-          </div>
-          <div
-            className='w-1/2 h-full lg:shadow-lg rounded-lg flex lg:border-r border-gray-200 p-4 ml-4'
-            style={{backgroundColor: '#FFCCD0'}}
-          >
-            {PartnerVideo ? PartnerVideo : <div></div>}
-          </div>
-        </div>
-        <div className='flex mx-2 p-4 gap-2 mt-8'>
-          <div className='w-3/4'>
-            <div className='flex justify-start gap-2'>
-              <button
-                onClick={mute}
-                className='h-12 w-12 items-center lg:shadow-sm rounded-lg bg-purple-500 hover:bg-purple-700 mr-1'
-              >
-                {isMute ? (
-                  <i className='text-white fas fa-microphone-slash'></i>
-                ) : (
-                  <i className='text-white  fa fa-microphone'></i>
-                )}
-              </button>
-              <button
-                onClick={videoControl}
-                className='h-12 w-12 items-center lg:shadow-sm rounded-lg bg-purple-500 hover:bg-purple-700 mr-1'
-              >
-                {isVideoOff ? (
-                  <i className='text-white fas fa-video-slash'></i>
-                ) : (
-                  <i className='text-white fas fa-video'></i>
-                )}
-              </button>
-              { type==='doctor' && <Link
-                to={ {pathname : `/manageMedicalRecord/${user.id}`}}
-                target="_blank" rel="noopener noreferrer"
-                className='h-12 py-1 px-4 items-center inline-flex lg:shadow-sm rounded-lg bg-indigo-500 hover:bg-indigo-600'
-              >
-                <img className='w-8 py-1 -mr-3' src={medicalIcon} alt=""/>
-                <h1 className='ml-5 py-2 text-base text-white'>Medical Record</h1>
-              </Link>
-              }
+//   return (
+//     <div>
+//       <div className='h-screen overflow-auto bg-gray-100 p-4'>
+//         <div className='flex content-center mx-6 my-2 h-5/6'>
+//           <div
+//             className='w-1/2 h- lg:shadow-lg rounded-lg flex lg:border-r border-gray-200 p-4 '
+//             style={{backgroundColor: '#B5E3FE'}}
+//           >
+//             {UserVideo}
+//           </div>
+//           <div
+//             className='w-1/2 h-full lg:shadow-lg rounded-lg flex lg:border-r border-gray-200 p-4 ml-4'
+//             style={{backgroundColor: '#FFCCD0'}}
+//           >
+//             {PartnerVideo ? PartnerVideo : <div></div>}
+//           </div>
+//         </div>
+//         <div className='flex mx-2 p-4 gap-2 mt-8'>
+//           <div className='w-3/4'>
+//             <div className='flex justify-start gap-2'>
+//               <button
+//                 onClick={mute}
+//                 className='h-12 w-12 items-center lg:shadow-sm rounded-lg bg-purple-500 hover:bg-purple-700 mr-1'
+//               >
+//                 {isMute ? (
+//                   <i className='text-white fas fa-microphone-slash'></i>
+//                 ) : (
+//                   <i className='text-white  fa fa-microphone'></i>
+//                 )}
+//               </button>
+//               <button
+//                 onClick={videoControl}
+//                 className='h-12 w-12 items-center lg:shadow-sm rounded-lg bg-purple-500 hover:bg-purple-700 mr-1'
+//               >
+//                 {isVideoOff ? (
+//                   <i className='text-white fas fa-video-slash'></i>
+//                 ) : (
+//                   <i className='text-white fas fa-video'></i>
+//                 )}
+//               </button>
+//               { type==='doctor' && <Link
+//                 to={ {pathname : /manageMedicalRecord/${user.id}}}
+//                 target="_blank" rel="noopener noreferrer"
+//                 className='h-12 py-1 px-4 items-center inline-flex lg:shadow-sm rounded-lg bg-indigo-500 hover:bg-indigo-600'
+//               >
+//                 <img className='w-8 py-1 -mr-3' src={medicalIcon} alt=""/>
+//                 <h1 className='ml-5 py-2 text-base text-white'>Medical Record</h1>
+//               </Link>
+//               }
 
-            </div>
-          </div>
-          <div className='w-1/4'>
-            <div className='flex justify-end gap-2'>
-              <a
-                href={type === "patient" ? "/patient/medicalRecord" : "/doctor"}
-                className='flex-col justify-center h-12 w-12 bg-red-400 hover:bg-red-500 font-bold py-2 px-2 rounded-lg inline-flex'
-              >
-                <img src={endCallIcon} alt=""/>
-              </a>
-            </div>
-          </div>
-        </div>
+//             </div>
+//           </div>
+//           <div className='w-1/4'>
+//             <div className='flex justify-end gap-2'>
+//               <a
+//                 href={type === "patient" ? "/patient/medicalRecord" : "/doctor"}
+//                 className='flex-col justify-center h-12 w-12 bg-red-400 hover:bg-red-500 font-bold py-2 px-2 rounded-lg inline-flex'
+//               >
+//                 <img src={endCallIcon} alt=""/>
+//               </a>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+return (
+  <div className='min-h-screen overflow-auto bg-gray-100 p-4'>
+    <div className='flex flex-col lg:flex-row mx-2 lg:mx-6 my-2 min-h-[400px] lg:h-full'>
+      
+      {/* User Video */}
+      <div
+        className='w-full lg:w-1/2 h-72 lg:h-auto shadow-lg rounded-lg flex border border-gray-200 p-4'
+        style={{ backgroundColor: '#B5E3FE' }}
+      >
+        {UserVideo}
+      </div>
+
+      {/* Partner Video */}
+      <div
+        className='w-full lg:w-1/2 h-72 lg:h-auto shadow-lg rounded-lg flex border border-gray-200 p-4 mt-4 lg:mt-0 lg:ml-4'
+        style={{ backgroundColor: '#FFCCD0' }}
+      >
+        {PartnerVideo ? PartnerVideo : <div className="w-full text-center">Waiting for partner...</div>}
       </div>
     </div>
-  );
+
+    {/* Controls */}
+<div className='mx-2 p-4 mt-6'>
+  <div className='w-full flex flex-nowrap overflow-x-auto items-center justify-between gap-4'>
+    {/* Left-side controls */}
+    <div className='flex flex-nowrap items-center gap-2'>
+      <button
+        onClick={mute}
+        className='h-12 w-12 flex items-center justify-center shadow-sm rounded-lg bg-purple-500 hover:bg-purple-700'
+      >
+        {isMute ? (
+          <i className='text-white fas fa-microphone-slash'></i>
+        ) : (
+          <i className='text-white fa fa-microphone'></i>
+        )}
+      </button>
+
+      <button
+        onClick={videoControl}
+        className='h-12 w-12 flex items-center justify-center shadow-sm rounded-lg bg-purple-500 hover:bg-purple-700'
+      >
+        {isVideoOff ? (
+          <i className='text-white fas fa-video-slash'></i>
+        ) : (
+          <i className='text-white fas fa-video'></i>
+        )}
+      </button>
+
+      {type === 'doctor' && (
+        <Link
+          to={{ pathname: `/manageMedicalRecord/${user.id}` }}
+          target="_blank"
+          rel="noopener noreferrer"
+          className='h-12 py-1 px-4 inline-flex items-center shadow-sm rounded-lg bg-indigo-500 hover:bg-indigo-600'
+        >
+          <img className='w-8 py-1 -mr-3' src={medicalIcon} alt="" />
+          <h1 className='ml-5 py-2 text-base text-white'>Medical Record</h1>
+        </Link>
+      )}
+    </div>
+
+    {/* Right-side end call button */}
+    <a
+      href={type === 'patient' ? '/patient/medicalRecord' : '/doctor'}
+      className='h-12 w-12 bg-red-400 hover:bg-red-500 font-bold py-2 px-2 rounded-lg flex items-center justify-center shrink-0'
+    >
+      <img src={endCallIcon} alt="End Call" />
+    </a>
+  </div>
+</div>
+
+  </div>
+);
+
 };
 
 export default Call;
