@@ -1,7 +1,7 @@
 /* Doctor login page */
 import React from 'react';
 import LogoPic from '../../../img/Medical_research.svg';
-import axios from 'axios';
+import Axios from 'utils/axios';
 import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import {useFetchUser} from '../../../context/userContext';
@@ -18,8 +18,8 @@ const DoctorLogin = () => {
   // summit login function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post('http://localhost:5001/api/v1/doctor/login', {
+    Axios
+      .post('/api/v1/doctor/login', {
         email: email,
         password: password,
       })

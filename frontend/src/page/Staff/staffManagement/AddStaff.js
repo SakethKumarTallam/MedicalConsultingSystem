@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import ConfirmIcon from '../../../img/confirm.png';
 import useTokenCheck from '../../../helper/staffTokenCheck';
-import Axios from 'axios';
+import Axios from 'utils/axios';
 
 const AddStaff = () => {
   useTokenCheck() // token check
@@ -44,7 +44,7 @@ const AddStaff = () => {
       setError("Password Doesn't match");
     } else {
       e.preventDefault();
-      Axios.post(`http://localhost:5001/api/v1/staff`, bodyParameters, config)
+      Axios.post(`/api/v1/staff`, bodyParameters, config)
         .then((res) => {
           return res.data;
         })

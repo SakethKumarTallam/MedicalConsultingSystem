@@ -3,7 +3,7 @@
 // import useTokenCheck from '../../helper/tokenCheck';
 // import {useHistory, useLocation} from 'react-router-dom';
 // import ConfirmIcon from '../../img/confirm.png';
-// import axios from 'axios';
+// import Axios from 'utils/axios';
 
 // const EditPatientProfile = () => {
 //   const history = useHistory();
@@ -57,7 +57,7 @@
 //     e.preventDefault();
 //     axios
 //       .put(
-//         `http://localhost:5001/api/v1/patient/${data.id}`,
+//         `/api/v1/patient/${data.id}`,
 //         bodyParameters,
 //         config
 //       )
@@ -320,7 +320,7 @@ import { useState } from 'react';
 import useTokenCheck from '../../helper/tokenCheck';
 import { useHistory, useLocation } from 'react-router-dom';
 import ConfirmIcon from '../../img/confirm.png';
-import axios from 'axios';
+import Axios from 'utils/axios';
 
 const EditPatientProfile = () => {
   const history = useHistory();
@@ -370,8 +370,8 @@ const EditPatientProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .put(`http://localhost:5001/api/v1/patient/${data._id}`, bodyParameters, config)
+    Axios
+      .put(`/api/v1/patient/${data._id}`, bodyParameters, config)
       .then((res) => res.data)
       .then(() => history.goBack())
       .catch((err) => {

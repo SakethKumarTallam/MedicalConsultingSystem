@@ -1,7 +1,7 @@
 // // User login as patient
 // import React from 'react';
 // import LogoPic from '../../../img/Medical_research.svg';
-// import axios from 'axios';
+// import Axios from 'utils/axios';
 // import {useState} from 'react';
 // import {useHistory, Link} from 'react-router-dom';
 // import {useFetchUser} from '../../../context/userContext';
@@ -19,7 +19,7 @@
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
 //     axios
-//       .post('http://localhost:5001/api/v1/patient/login', {
+//       .post('/api/v1/patient/login', {
 //         email: email,
 //         password: password,
 //       })
@@ -114,7 +114,7 @@
 // User login as patient
 import React, { useState } from 'react';
 import LogoPic from '../../../img/Medical_research.svg';
-import axios from 'axios';
+import Axios from 'utils/axios';
 import { useHistory, Link } from 'react-router-dom';
 import { useFetchUser } from '../../../context/userContext';
 import { auth, provider } from '../../../firebase';
@@ -131,8 +131,8 @@ const UserLogin = () => {
   // Handle email/password login
   const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post('http://localhost:5001/api/v1/patient/login', {
+    Axios
+      .post('/api/v1/patient/login', {
         email: email,
         password: password,
       })
@@ -153,7 +153,7 @@ const handleGoogleLogin = async () => {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
 
-    const res = await axios.post("http://localhost:5001/api/v1/patient/firebase-login", {
+    const res = await Axios.post("/api/v1/patient/firebase-login", {
       email: user.email,
       name: user.displayName,
       photo: user.photoURL,

@@ -1,7 +1,7 @@
 // // Patient register page
 // import React from 'react';
 // import DoctorPic from '../../../img/Doctor.svg';
-// import axios from 'axios';
+// import Axios from 'utils/axios';
 // import {useState} from 'react';
 // import {useHistory, Link} from 'react-router-dom';
 
@@ -32,8 +32,8 @@
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
 //     console.log(validation());
-//     axios
-//       .post('http://localhost:5001/api/v1/patient/register', {
+//     Axios
+//       .post('/api/v1/patient/register', {
 //         name: name,
 //         email: email,
 //         password: password,
@@ -273,7 +273,7 @@
 
 import React, { useState } from 'react';
 import DoctorPic from '../../../img/Doctor.svg';
-import axios from 'axios';
+import Axios from 'utils/axios';
 import { useHistory, Link } from 'react-router-dom';
 
 const PatientRegister = () => {
@@ -303,7 +303,7 @@ const PatientRegister = () => {
     }
 
     try {
-      await axios.post('http://localhost:5001/api/v1/patient/register', {
+      await Axios.post('/api/v1/patient/register', {
         name,
         email,
         password,

@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import EditIcon from '../../../img/edit.png';
 import BinIcon from '../../../img/bin.png';
-import Axios from 'axios';
+import Axios from 'utils/axios';
 import Spinner from '../../../components/Spinner';
 
 const EachDoctor = ({match}) => {
@@ -33,7 +33,7 @@ const EachDoctor = ({match}) => {
   const handleDelete = async (e) => {
     e.preventDefault();
     Axios.delete(
-      `http://localhost:5001/api/v1/doctor/${match.params.id}`,
+      `/api/v1/doctor/${match.params.id}`,
       config
     )
       .then(() => {
@@ -208,7 +208,7 @@ const EachDoctor = ({match}) => {
 const fetchDoctor = (setDoctor, id) => {
   const fetchData = async () => {
     try {
-      let res = await Axios.get(`http://localhost:5001/api/v1/doctor/${id}`, {
+      let res = await Axios.get(`/api/v1/doctor/${id}`, {
         headers: {
           'x-acess-token': localStorage.getItem('token'),
         },

@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import {Link, useHistory} from 'react-router-dom';
 import {useFetchUser} from '../../context/userContext';
 import useTokenCheck from '../../helper/doctorTokenCheck';
-import Axios from 'axios';
+import Axios from 'utils/axios';
 import IncommingCall from '../../components/IncommingCall';
 import Spinner from '../../components/Spinner'
 
@@ -26,7 +26,7 @@ const DoctorDashboard = () => {
   console.log(mr);
 
   useEffect(() => {
-    const newSocket = io('localhost:5001/');
+    const newSocket = io(process.env.REACT_APP_SOCKET_URL);
     if (state.data) {
       fetchMR(setMr, state.data.id);
       setSocket(newSocket); // set doctor socket
@@ -148,7 +148,7 @@ const fetchMR = (setMr, id) => {
   const fetchData = async () => {
     try {
       let res = await Axios.get(
-        `http://localhost:5001/api/v1/medicalRecord/?sort=-date&doctor=${id}`,
+        `/api/v1/medicalRecord/?sort=-date&doctor=${id}`,
         {
           headers: {
             'x-acess-token': localStorage.getItem('token'),

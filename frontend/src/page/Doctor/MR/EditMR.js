@@ -1,6 +1,6 @@
 /* Edit medical record for doctor */
 import {useState} from 'react';
-import Axios from 'axios';
+import Axios from 'utils/axios';
 import {useHistory, useLocation} from 'react-router-dom';
 import useTokenCheck from '../../../helper/doctorTokenCheck';
 import ConfirmIcon from '../../../img/confirm.png';
@@ -44,7 +44,7 @@ const EditMR = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     Axios.put(
-      `http://localhost:5001/api/v1/medicalRecord/${data.id}`,
+      `/api/v1/medicalRecord/${data.id}`,
       bodyParameters,
       config
     )

@@ -2,7 +2,7 @@
 // import {useState,useEffect} from 'react';
 // import {useHistory} from 'react-router-dom';
 // import ConfirmIcon from '../../../img/confirm.png';
-// import Axios from 'axios';
+// import Axios from 'utils/axios';
 
 // const AddDoctor = () => {
 //   const history = useHistory();
@@ -59,7 +59,7 @@
 //       setError("Password Doesn't match");
 //     } else {
 //     e.preventDefault();
-//     Axios.post(`http://localhost:5001/api/v1/doctor/`, formData, config)
+//     Axios.post(`/api/v1/doctor/`, formData, config)
 //       .then((res) => {
 //         return res.data;
 //       })
@@ -268,7 +268,7 @@
 // const fetchSpecialization = (setSpec) => {
 //   const fetchType = async () => {
 //     try {
-//       let res = await Axios.get(`http://localhost:5001/api/v1/specialization/`);
+//       let res = await Axios.get(`/api/v1/specialization/`);
 //       let data = res.data.data;
 
 //       if (!Array.isArray(data)) {
@@ -296,7 +296,7 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import ConfirmIcon from '../../../img/confirm.png';
-import Axios from 'axios';
+import Axios from 'utils/axios';
 
 const AddDoctor = () => {
   const history = useHistory();
@@ -363,7 +363,7 @@ const handleSubmit = async (e) => {
   }
 
   try {
-    await Axios.post(`http://localhost:5001/api/v1/doctor/`, formData, config);
+    await Axios.post(`/api/v1/doctor/`, formData, config);
     history.goBack();
   } catch (err) {
     console.error(err.response?.data || err.message);
@@ -506,7 +506,7 @@ const FileInput = ({ label, onChange }) => (
 const fetchSpecialization = (setSpec) => {
   const fetchType = async () => {
     try {
-      const res = await Axios.get(`http://localhost:5001/api/v1/specialization/`);
+      const res = await Axios.get(`/api/v1/specialization/`);
       const data = res.data.data;
       setSpec({ data: Array.isArray(data) ? data : [data], isPending: false, error: null });
     } catch (error) {

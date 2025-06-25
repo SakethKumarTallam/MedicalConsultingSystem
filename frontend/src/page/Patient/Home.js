@@ -1,7 +1,7 @@
 import useTokenCheck from '../../helper/tokenCheck';
 import {useEffect, useState} from 'react';
 import io from 'socket.io-client';
-import Axios from 'axios';
+import Axios from 'utils/axios';
 import DoctorCard from '../../components/DoctorCard';
 import Spinner from '../../components/Spinner';
 
@@ -26,7 +26,7 @@ function Home() {
 
 
   useEffect(() => {
-    const newSocket = io('localhost:5001/'); // socket connect
+    const newSocket = io(process.env.REACT_APP_SOCKET_URL); // socket connect
     setSocket(newSocket);
     getOnlineDoc(newSocket, setOnlineDoc, type, search); // get online doctor
     fetchSpecialization(setSpec); // get specialization
@@ -145,7 +145,7 @@ const fetchDoctorData = (doctorId, setOnlineDoc, type, search) => {
   const fetchDoctor = async () => {
     try {
       let res = await Axios.get(
-        `http://localhost:5001/api/v1/doctor/${id}`,
+        `/api/v1/doctor/${id}`,
         {
           headers: {
             'x-acess-token': localStorage.getItem('token'),
@@ -200,7 +200,7 @@ const disconnectSocket = (socket) => {
 const fetchSpecialization = (setSpec) => {
   const fetchType = async () => {
     try {
-      let res = await Axios.get(`http://localhost:5001/api/v1/specialization/`);
+      let res = await Axios.get(`/api/v1/specialization/`);
       let data = res.data.data;
 
       if (!Array.isArray(data)) {

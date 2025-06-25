@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import EditIcon from '../../../img/edit.png';
 import BinIcon from '../../../img/bin.png';
-import Axios from 'axios';
+import Axios from 'utils/axios';
 import useTokenCheck from '../../../helper/staffTokenCheck';
 import Spinner from '../../../components/Spinner';
 
@@ -34,7 +34,7 @@ const StaffProfile = ({match}) => {
   const handleDelete = async (e) => {
     e.preventDefault();
     Axios.delete(
-      `http://localhost:5001/api/v1/staff/${match.params.id}`,
+      `/api/v1/staff/${match.params.id}`,
       config
     )
       .then(() => {
@@ -190,7 +190,7 @@ const fetchStaff = (setStaff, id) => {
   const fetchData = async () => {
     try {
       let res = await Axios.get(
-        `http://localhost:5001/api/v1/staff/${id}`,
+        `/api/v1/staff/${id}`,
         {
           headers: {
             'x-acess-token': localStorage.getItem('token'),

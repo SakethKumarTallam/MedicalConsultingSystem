@@ -1,6 +1,6 @@
 // view medical record while having consultation with patient
 import {useEffect, useState} from 'react';
-import Axios from 'axios';
+import Axios from 'utils/axios';
 import {useHistory, Link} from 'react-router-dom';
 import useTokenCheck from '../../../helper/doctorTokenCheck';
 import {useFetchUser} from '../../../context/userContext';
@@ -34,7 +34,7 @@ const ViewEachMR = ({match}) => {
   const handleDelete = async (e) => {
     e.preventDefault();
     Axios.delete(
-      `http://localhost:5001/api/v1/medicalRecord/${Mr.data.id}`,
+      `/api/v1/medicalRecord/${Mr.data.id}`,
       config
     )
       .then(() => {
@@ -222,7 +222,7 @@ const fetchMR = (setMr, id) => {
   const fetchData = async () => {
     try {
       let res = await Axios.get(
-        `http://localhost:5001/api/v1/medicalRecord/${id}`,
+        `/api/v1/medicalRecord/${id}`,
         {
           headers: {
             'x-acess-token': localStorage.getItem('token'),

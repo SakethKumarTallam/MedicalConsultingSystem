@@ -2,7 +2,7 @@
 import {useState} from 'react';
 import {useHistory, useLocation} from 'react-router-dom';
 import ConfirmIcon from '../../img/confirm.png';
-import Axios from 'axios';
+import Axios from 'utils/axios';
 
 const EditDoctorProfile = () => {
   const history = useHistory();
@@ -43,7 +43,7 @@ const EditDoctorProfile = () => {
 
     e.preventDefault();
     Axios.put(
-      `http://localhost:5001/api/v1/doctor/${data.id}`,
+      `/api/v1/doctor/${data.id}`,
       formData,
       config
     )

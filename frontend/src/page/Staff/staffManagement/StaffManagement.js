@@ -2,7 +2,7 @@
 import React from 'react';
 import useTokenCheck from '../../../helper/staffTokenCheck';
 import {useEffect, useState} from 'react';
-import Axios from 'axios';
+import Axios from 'utils/axios';
 import {Link} from 'react-router-dom';
 import Spinner from '../../../components/Spinner';
 
@@ -103,7 +103,7 @@ const fetchDoctor = (setStaff) => {
   const fetchData = async () => {
     try {
       let res = await Axios.get(
-        `http://localhost:5001/api/v1/staff/?sort=name`,
+        `/api/v1/staff/?sort=name`,
         {
           headers: {
             'x-acess-token': localStorage.getItem('token'),

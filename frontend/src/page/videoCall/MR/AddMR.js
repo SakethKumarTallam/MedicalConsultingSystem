@@ -1,6 +1,6 @@
 // // add medical record for doctor
 // import {useState} from 'react';
-// import Axios from 'axios';
+// import Axios from 'utils/axios';
 // import {useHistory, useLocation} from 'react-router-dom';
 // import useTokenCheck from '../../../helper/doctorTokenCheck';
 // import {useFetchUser} from '../../../context/userContext';
@@ -47,7 +47,7 @@
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
 //     Axios.post(
-//       `http://localhost:5001/api/v1/medicalRecord/`,
+//       `/api/v1/medicalRecord/`,
 //       bodyParameters,
 //       config
 //     )
@@ -227,7 +227,7 @@
 
 // add medical record for doctor
 import {useState} from 'react';
-import Axios from 'axios';
+import Axios from 'utils/axios';
 import {useHistory, useLocation} from 'react-router-dom';
 import useTokenCheck from '../../../helper/doctorTokenCheck';
 import {useFetchUser} from '../../../context/userContext';
@@ -277,7 +277,7 @@ const AddMR = () => {
 
     try {
       await Axios.post(
-        'http://localhost:5001/api/v1/medicalRecord/',
+        '/api/v1/medicalRecord/',
         bodyParameters,
         config
       );

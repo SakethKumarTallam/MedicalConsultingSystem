@@ -2,7 +2,7 @@
 import useTokenCheck from '../../../helper/doctorTokenCheck';
 import {useFetchUser} from '../../../context/userContext';
 import {useEffect, useState} from 'react';
-import Axios from 'axios';
+import Axios from 'utils/axios';
 import {Link} from 'react-router-dom';
 import Spinner from '../../../components/Spinner';
 
@@ -126,7 +126,7 @@ const fetchMR = (setMr, id) => {
   const fetchData = async () => {
     try {
       let res = await Axios.get(
-        `http://localhost:5001/api/v1/medicalRecord/?sort=-date&patient=${id}`,
+        `/api/v1/medicalRecord/?sort=-date&patient=${id}`,
         {
           headers: {
             'x-acess-token': localStorage.getItem('token'),
@@ -158,7 +158,7 @@ const fetchPatient = (setPatient, id) => {
   const fetchData = async () => {
     try {
       let res = await Axios.get(
-        `http://localhost:5001/api/v1/patient/${id}`,
+        `/api/v1/patient/${id}`,
         {
           headers: {
             'x-acess-token': localStorage.getItem('token'),

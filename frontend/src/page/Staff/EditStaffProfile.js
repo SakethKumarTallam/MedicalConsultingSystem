@@ -1,6 +1,6 @@
 // edit staff information page
 import {useState} from 'react';
-import Axios from 'axios';
+import Axios from 'utils/axios';
 import {useHistory, useLocation} from 'react-router-dom';
 import useTokenCheck from '../../helper/staffTokenCheck';
 import ConfirmIcon from '../../img/confirm.png';
@@ -42,7 +42,7 @@ const EditStaffProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     Axios.put(
-      `http://localhost:5001/api/v1/staff/${data.id}`,
+      `/api/v1/staff/${data.id}`,
       bodyParameters,
       config
     )

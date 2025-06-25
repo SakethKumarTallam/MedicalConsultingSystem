@@ -20,7 +20,7 @@ const DoctorInfo = ({match}) => {
   const {state} = useFetchUser(); // User data
 
   useEffect(() => {
-    const newSocket = io('localhost:5001/'); // connect socket
+    const newSocket = io(process.env.REACT_APP_SOCKET_URL); // connect socket
     setSocket(newSocket);
     getOnlineDoc(newSocket, setOnlineDoc, setFetchFail); // get list of avaliable doctor
     newSocket.on('availableCall', (status) => { // listen for doctor to answer call
