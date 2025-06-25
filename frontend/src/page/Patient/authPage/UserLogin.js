@@ -184,7 +184,7 @@ const handleGoogleLogin = async () => {
               LOGIN
             </div>
             <form onSubmit={handleSubmit}>
-              <div className='mb-4 lg:flex justify-center'>
+              <div className='mb-4 flex justify-center'>
                 <input
                   type='email'
                   name='email'
@@ -198,7 +198,7 @@ const handleGoogleLogin = async () => {
                 />
               </div>
 
-              <div className='mb-4 lg:flex justify-center'>
+              <div className='mb-4 flex justify-center'>
                 <input
                   type='password'
                   name='password'
