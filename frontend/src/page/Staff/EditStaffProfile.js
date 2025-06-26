@@ -1,14 +1,14 @@
 // edit staff information page
-import {useState} from 'react';
+import { useState } from 'react';
 import Axios from 'utils/axios';
-import {useHistory, useLocation} from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import useTokenCheck from '../../helper/staffTokenCheck';
 import ConfirmIcon from '../../img/confirm.png';
 
 const EditStaffProfile = () => {
   useTokenCheck(); // token check
   const location = useLocation();
-  const {data} = location.state;
+  const { data } = location.state;
 
   const history = useHistory();
 
@@ -66,7 +66,7 @@ const EditStaffProfile = () => {
           <span> Back</span>
         </button>
       </div>
-      <div className='flex items-center justify-center py-10'>
+      {/* <div className='flex items-center justify-center py-10'>
         <div
           className='bg-gray-100 shadow-xl w-full overflow-hidden rounded-lg'
           style={{maxWidth: '90%'}}
@@ -187,7 +187,102 @@ const EditStaffProfile = () => {
             </form>
           )}
         </div>
+      </div> */}
+      <div className='flex items-center justify-center py-10 px-4'>
+        <div className='bg-gray-100 shadow-xl w-full max-w-6xl overflow-hidden rounded-lg'>
+          {data && (
+            <form onSubmit={handleSubmit}>
+              <div className='w-full bg-white p-4 sm:p-6 md:p-10'>
+                {/* Row 1 */}
+                <div className='flex flex-wrap -mx-3'>
+                  <div className='w-full md:w-2/3 px-3 mb-4'>
+                    <label className='text-xs px-1 text-black'>Name</label>
+                    <input
+                      defaultValue={data.name}
+                      onChange={(e) => setName(e.target.value)}
+                      className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 bg-white'
+                    />
+                  </div>
+                  <div className='w-full md:w-1/3 px-3 mb-4'>
+                    <label className='text-xs px-1 text-black'>Phone number</label>
+                    <input
+                      defaultValue={data.phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 bg-white'
+                    />
+                  </div>
+                </div>
+
+                {/* Row 2 */}
+                <div className='flex flex-wrap -mx-3'>
+                  <div className='w-full md:w-1/3 px-3 mb-4'>
+                    <label className='text-xs px-1 text-black'>Email</label>
+                    <input
+                      defaultValue={data.email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 bg-white'
+                    />
+                  </div>
+                  <div className='w-full md:w-1/3 px-3 mb-4'>
+                    <label className='text-xs px-1 text-black'>Position</label>
+                    <input
+                      defaultValue={data.position}
+                      onChange={(e) => setPosition(e.target.value)}
+                      className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 bg-white'
+                    />
+                  </div>
+                  <div className='w-full md:w-1/3 px-3 mb-4'>
+                    <label className='text-xs px-1 text-black'>Salary</label>
+                    <input
+                      defaultValue={data.salary}
+                      onChange={(e) => setSalary(e.target.value)}
+                      className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 bg-white'
+                    />
+                  </div>
+                </div>
+
+                {/* Row 3 */}
+                <div className='flex flex-wrap -mx-3'>
+                  <div className='w-full sm:w-1/2 md:w-1/4 px-3 mb-4'>
+                    <label className='text-xs px-1 text-black'>Gender</label>
+                    <select
+                      defaultValue={data.gender}
+                      onChange={(e) => setGender(e.target.value)}
+                      className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 bg-white'
+                    >
+                      <option>Male</option>
+                      <option>Female</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Error */}
+                <div className='text-center mb-2'>
+                  {error ? (
+                    <h1 className='text-base text-red-700 font-normal'>
+                      {error.message}
+                    </h1>
+                  ) : null}
+                </div>
+
+                {/* Submit Button */}
+                <div className='flex justify-end'>
+                  <button
+                    type='submit'
+                    className='bg-green-400 hover:bg-green-500 font-bold py-2 px-4 mt-5 rounded inline-flex items-center'
+                  >
+                    <img className='w-8 h-10 py-1 -mr-3' src={ConfirmIcon} alt='' />
+                    <div className='flex flex-col ml-5'>
+                      <h1 className='py-2 text-xl text-white'>Confirm</h1>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </form>
+          )}
+        </div>
       </div>
+
     </div>
   );
 };

@@ -1,13 +1,13 @@
 // Edit doctor profile page
-import {useState} from 'react';
-import {useHistory, useLocation} from 'react-router-dom';
+import { useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import ConfirmIcon from '../../img/confirm.png';
 import Axios from 'utils/axios';
 
 const EditDoctorProfile = () => {
   const history = useHistory();
   const location = useLocation();
-  const {data} = location.state; // old data
+  const { data } = location.state; // old data
 
   // all the information
   const [name, setName] = useState(data.name);
@@ -20,7 +20,7 @@ const EditDoctorProfile = () => {
   const [photo, setPhoto] = useState(null);
   const [error, setError] = useState(false);
 
- // token
+  // token
   const config = {
     headers: {
       'x-acess-token': localStorage.getItem('token'),
@@ -72,155 +72,285 @@ const EditDoctorProfile = () => {
           <h1 className='text-2xl font-bold'>Edit Doctor's Profile</h1>
         </div>
         {data && (
-          <div className='flex justify-center px-20 py-2 mb-2'>
-            <div className='w-1/3 bg-gray-200 py-10'>
-              <div className='w-full px-20 py-5'>
+          // <div className='flex justify-center px-20 py-2 mb-2'>
+          //   <div className='w-1/3 bg-gray-200 py-10'>
+          //     <div className='w-full px-20 py-5'>
+          //       <img
+          //         className='object-cover object-center rounded-full w-full border-solid border-white border-4'
+          //         src={data.photo}
+          //         alt='docpic'
+          //       />
+          //     </div>
+          //     <div className='text-center text-xl p-5'>
+          //       <h1>Specialization</h1>
+          //     </div>
+          //     <div className='flex justify-center'>
+          //       <h1 className='text-center bg-pink-200 rounded-lg w-32'>
+          //         {data.specialization.specialization}
+          //       </h1>
+          //     </div>
+          //   </div>
+
+          //   <div
+          //     className='bg-white shadow-xl w-2/3 overflow-hidden rounded-lg'
+          //     style={{maxWidth: 1000}}
+          //   >
+          //     <form onSubmit={handleSubmit}>
+          //       <div className='w-full py-10 px-5 md:px-10 bg-white'>
+          //         <div className='flex -mx-3'>
+          //           <div className='w-1/2 px-3 mb-2'>
+          //             <label className='text-xs px-1 text-black'>Name</label>
+          //             <div className='flex'>
+          //               <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
+          //               <input
+          //                 defaultValue={data.name}
+          //                 onChange={(e) => setName(e.target.value)}
+          //                 className='w-full -ml-10 pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 '
+          //               />
+          //             </div>
+          //           </div>
+          //           <div className='w-1/2 px-3 mb-2'>
+          //             <label className='text-xs px-1 text-black'>Gender</label>
+          //             <div className='flex'>
+          //               <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
+          //               <select
+          //                 defaultValue={data.gender}
+          //                 onChange={(e) => setGender(e.target.value)}
+          //                 className='w-1/2 -ml-10 pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 '
+          //               >
+          //                 <option>Male</option>
+          //                 <option>Female</option>
+          //               </select>
+          //             </div>
+          //           </div>
+          //         </div>
+          //         <div className='flex -mx-3'>
+          //           <div className='w-1/2 px-3 mb-2'>
+          //             <label className='text-xs px-1 text-black'>Email</label>
+          //             <div className='flex'>
+          //               <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
+          //               <input
+          //                 defaultValue={data.email}
+          //                 onChange={(e) => setEmail(e.target.value)}
+          //                 className='w-full -ml-10 pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 '
+          //               />
+          //             </div>
+          //           </div>
+          //           <div className='w-1/2 px-3 mb-2'>
+          //             <label className='text-xs px-1 text-black'>
+          //               Phone number
+          //             </label>
+          //             <div className='flex'>
+          //               <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
+          //               <input
+          //                 defaultValue={data.phone}
+          //                 onChange={(e) => setPhone(e.target.value)}
+          //                 className='w-full -ml-10 pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 '
+          //               />
+          //             </div>
+          //           </div>
+          //         </div>
+          //         <div className='flex -mx-3'>
+          //           <div className='w-1/2 px-3 mb-2'>
+          //             <label className='text-xs px-1 text-black'>
+          //               Hospital
+          //             </label>
+          //             <div className='flex'>
+          //               <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
+          //               <input
+          //                 defaultValue={data.hospital}
+          //                 onChange={(e) => setHospital(e.target.value)}
+          //                 className='w-full -ml-10 pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 '
+          //               />
+          //             </div>
+          //           </div>
+          //           <div className='w-1/2 px-3 mb-2'>
+          //             <label className='text-xs px-1 text-black'>
+          //               Education
+          //             </label>
+          //             <div className='flex'>
+          //               <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
+          //               <input
+          //                 defaultValue={data.background}
+          //                 onChange={(e) => setBackground(e.target.value)}
+          //                 className='w-full -ml-10 pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 '
+          //               />
+          //             </div>
+          //           </div>
+          //         </div>
+          //         <div className='flex -mx-3'>
+          //           <div className='w-1/2 px-3 mb-2'>
+          //             <label className='text-xs px-1 text-black'>
+          //               Specialization detail
+          //             </label>
+          //             <div className='flex'>
+          //               <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
+          //               <textarea
+          //                 defaultValue={data.specializationDetail}
+          //                 onChange={(e) => setSD(e.target.value)}
+          //                 className='w-full -ml-10 pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 '
+          //               />
+          //             </div>
+          //           </div>
+          //           <div className='w-1/2 px-3 mb-2'>
+          //             <label className='text-xs px-1 text-black'>Picture</label>
+          //             <div className='flex'>
+          //               <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
+          //               <input
+          //                 type='file'
+          //                 onChange={(e) => setPhoto(e.target.files[0])}
+          //                 className='w-full -ml-10 pl-1 pr-3 py-2 rounded-lg outline-none focus:border-indigo-500 '
+          //               />
+          //             </div>
+          //           </div>
+          //         </div>
+
+          //         <div className='text-center'>
+          //           {error ? (
+          //             <h1 className='text-base text-red-700 font-normal'>
+          //               {error.message}
+          //             </h1>
+          //           ) : (
+          //             <span> </span>
+          //           )}
+          //         </div>
+          //         <div className='flex justify-end'>
+
+          //           <button
+          //             type='submit'
+          //             className='bg-green-400 hover:bg-green-500 font-bold py-2 px-4 mt-5 rounded inline-flex'
+          //           >
+          //             <img className='w-8 h-10 py-1 -mr-3' src={ConfirmIcon} alt=""/>
+          //             <div className='flex flex-col ml-5'>
+          //               <h1 className='py-2 text-xl text-white'>Confirm</h1>
+          //             </div>
+          //           </button>
+          //         </div>
+          //       </div>
+          //     </form>
+          //   </div>
+          // </div>
+          <div className='flex flex-wrap justify-center px-4 md:px-10 py-4 gap-6'>
+            {/* Left section: Doctor image and specialization */}
+            <div className='w-full md:w-1/3 bg-gray-200 rounded-lg py-8'>
+              <div className='flex justify-center px-6'>
                 <img
-                  className='object-cover object-center rounded-full w-full border-solid border-white border-4'
+                  className='object-cover object-center rounded-full w-40 h-40 border-solid border-white border-4'
                   src={data.photo}
                   alt='docpic'
                 />
               </div>
-              <div className='text-center text-xl p-5'>
+              <div className='text-center text-xl pt-6'>
                 <h1>Specialization</h1>
               </div>
-              <div className='flex justify-center'>
-                <h1 className='text-center bg-pink-200 rounded-lg w-32'>
+              <div className='flex justify-center mt-2'>
+                <h1 className='text-center bg-pink-200 rounded-lg px-4 py-1'>
                   {data.specialization.specialization}
                 </h1>
               </div>
             </div>
 
-            <div
-              className='bg-white shadow-xl w-2/3 overflow-hidden rounded-lg'
-              style={{maxWidth: 1000}}
-            >
+            {/* Right section: Form */}
+            <div className='w-full md:w-2/3 bg-white shadow-xl rounded-lg overflow-hidden'>
               <form onSubmit={handleSubmit}>
-                <div className='w-full py-10 px-5 md:px-10 bg-white'>
-                  <div className='flex -mx-3'>
-                    <div className='w-1/2 px-3 mb-2'>
+                <div className='w-full py-8 px-5 md:px-10 bg-white'>
+                  {/* Name & Gender */}
+                  <div className='flex flex-wrap -mx-3'>
+                    <div className='w-full md:w-1/2 px-3 mb-4'>
                       <label className='text-xs px-1 text-black'>Name</label>
-                      <div className='flex'>
-                        <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
-                        <input
-                          defaultValue={data.name}
-                          onChange={(e) => setName(e.target.value)}
-                          className='w-full -ml-10 pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 '
-                        />
-                      </div>
+                      <input
+                        defaultValue={data.name}
+                        onChange={(e) => setName(e.target.value)}
+                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
+                      />
                     </div>
-                    <div className='w-1/2 px-3 mb-2'>
+                    <div className='w-full md:w-1/2 px-3 mb-4'>
                       <label className='text-xs px-1 text-black'>Gender</label>
-                      <div className='flex'>
-                        <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
-                        <select
-                          defaultValue={data.gender}
-                          onChange={(e) => setGender(e.target.value)}
-                          className='w-1/2 -ml-10 pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 '
-                        >
-                          <option>Male</option>
-                          <option>Female</option>
-                        </select>
-                      </div>
+                      <select
+                        defaultValue={data.gender}
+                        onChange={(e) => setGender(e.target.value)}
+                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
+                      >
+                        <option>Male</option>
+                        <option>Female</option>
+                      </select>
                     </div>
                   </div>
-                  <div className='flex -mx-3'>
-                    <div className='w-1/2 px-3 mb-2'>
+
+                  {/* Email & Phone */}
+                  <div className='flex flex-wrap -mx-3'>
+                    <div className='w-full md:w-1/2 px-3 mb-4'>
                       <label className='text-xs px-1 text-black'>Email</label>
-                      <div className='flex'>
-                        <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
-                        <input
-                          defaultValue={data.email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          className='w-full -ml-10 pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 '
-                        />
-                      </div>
+                      <input
+                        defaultValue={data.email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
+                      />
                     </div>
-                    <div className='w-1/2 px-3 mb-2'>
-                      <label className='text-xs px-1 text-black'>
-                        Phone number
-                      </label>
-                      <div className='flex'>
-                        <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
-                        <input
-                          defaultValue={data.phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          className='w-full -ml-10 pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 '
-                        />
-                      </div>
+                    <div className='w-full md:w-1/2 px-3 mb-4'>
+                      <label className='text-xs px-1 text-black'>Phone number</label>
+                      <input
+                        defaultValue={data.phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
+                      />
                     </div>
                   </div>
-                  <div className='flex -mx-3'>
-                    <div className='w-1/2 px-3 mb-2'>
-                      <label className='text-xs px-1 text-black'>
-                        Hospital
-                      </label>
-                      <div className='flex'>
-                        <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
-                        <input
-                          defaultValue={data.hospital}
-                          onChange={(e) => setHospital(e.target.value)}
-                          className='w-full -ml-10 pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 '
-                        />
-                      </div>
+
+                  {/* Hospital & Education */}
+                  <div className='flex flex-wrap -mx-3'>
+                    <div className='w-full md:w-1/2 px-3 mb-4'>
+                      <label className='text-xs px-1 text-black'>Hospital</label>
+                      <input
+                        defaultValue={data.hospital}
+                        onChange={(e) => setHospital(e.target.value)}
+                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
+                      />
                     </div>
-                    <div className='w-1/2 px-3 mb-2'>
-                      <label className='text-xs px-1 text-black'>
-                        Education
-                      </label>
-                      <div className='flex'>
-                        <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
-                        <input
-                          defaultValue={data.background}
-                          onChange={(e) => setBackground(e.target.value)}
-                          className='w-full -ml-10 pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 '
-                        />
-                      </div>
+                    <div className='w-full md:w-1/2 px-3 mb-4'>
+                      <label className='text-xs px-1 text-black'>Education</label>
+                      <input
+                        defaultValue={data.background}
+                        onChange={(e) => setBackground(e.target.value)}
+                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
+                      />
                     </div>
                   </div>
-                  <div className='flex -mx-3'>
-                    <div className='w-1/2 px-3 mb-2'>
-                      <label className='text-xs px-1 text-black'>
-                        Specialization detail
-                      </label>
-                      <div className='flex'>
-                        <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
-                        <textarea
-                          defaultValue={data.specializationDetail}
-                          onChange={(e) => setSD(e.target.value)}
-                          className='w-full -ml-10 pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500 '
-                        />
-                      </div>
+
+                  {/* Specialization Detail & Picture */}
+                  <div className='flex flex-wrap -mx-3'>
+                    <div className='w-full md:w-1/2 px-3 mb-4'>
+                      <label className='text-xs px-1 text-black'>Specialization detail</label>
+                      <textarea
+                        defaultValue={data.specializationDetail}
+                        onChange={(e) => setSD(e.target.value)}
+                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
+                      />
                     </div>
-                    <div className='w-1/2 px-3 mb-2'>
+                    <div className='w-full md:w-1/2 px-3 mb-4'>
                       <label className='text-xs px-1 text-black'>Picture</label>
-                      <div className='flex'>
-                        <div className='w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center' />
-                        <input
-                          type='file'
-                          onChange={(e) => setPhoto(e.target.files[0])}
-                          className='w-full -ml-10 pl-1 pr-3 py-2 rounded-lg outline-none focus:border-indigo-500 '
-                        />
-                      </div>
+                      <input
+                        type='file'
+                        onChange={(e) => setPhoto(e.target.files[0])}
+                        className='w-full pl-1 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
+                      />
                     </div>
                   </div>
-                  
-                  <div className='text-center'>
-                    {error ? (
-                      <h1 className='text-base text-red-700 font-normal'>
-                        {error.message}
-                      </h1>
-                    ) : (
-                      <span> </span>
-                    )}
-                  </div>
+
+                  {/* Error Message */}
+                  {error && (
+                    <div className='text-center text-red-600 text-sm mb-4'>
+                      {error.message}
+                    </div>
+                  )}
+
+                  {/* Submit Button */}
                   <div className='flex justify-end'>
-                    
                     <button
                       type='submit'
-                      className='bg-green-400 hover:bg-green-500 font-bold py-2 px-4 mt-5 rounded inline-flex'
+                      className='bg-green-400 hover:bg-green-500 font-bold py-2 px-4 mt-4 rounded inline-flex'
                     >
-                      <img className='w-8 h-10 py-1 -mr-3' src={ConfirmIcon} alt=""/>
+                      <img className='w-8 h-10 py-1 -mr-3' src={ConfirmIcon} alt='' />
                       <div className='flex flex-col ml-5'>
                         <h1 className='py-2 text-xl text-white'>Confirm</h1>
                       </div>
@@ -230,6 +360,7 @@ const EditDoctorProfile = () => {
               </form>
             </div>
           </div>
+
         )}
       </div>
     </div>

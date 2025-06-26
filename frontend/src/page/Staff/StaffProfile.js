@@ -1,14 +1,14 @@
 // staff profile page
 import React from 'react';
-import {useHistory, Link} from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import EditIcon from '../../img/edit.png';
-import {useFetchUser} from '../../context/userContext';
+import { useFetchUser } from '../../context/userContext';
 import useTokenCheck from '../../helper/staffTokenCheck';
 import Spinner from '../../components/Spinner';
 
-const StaffProfile = ({match}) => {
+const StaffProfile = ({ match }) => {
   useTokenCheck(); // token check
-  const {state} = useFetchUser(); // staff data
+  const { state } = useFetchUser(); // staff data
   const history = useHistory();
 
   if (state.data === null) {
@@ -22,7 +22,7 @@ const StaffProfile = ({match}) => {
             <span> Back</span>
           </button>
         </div>
-        <div className='flex items-center justify-center py-10'>
+        {/* <div className='flex items-center justify-center py-10'>
           <div
             className='bg-gray-100 shadow-xl w-full overflow-hidden rounded-lg'
             style={{maxWidth: '90%'}}
@@ -124,7 +124,85 @@ const StaffProfile = ({match}) => {
               </div>
             )}
           </div>
+        </div> */}
+        <div className='flex items-center justify-center py-10 px-4'>
+          <div className='bg-gray-100 shadow-xl w-full max-w-6xl rounded-lg overflow-hidden'>
+            {state.data && (
+              <div className='w-full bg-white p-4 sm:p-6 md:p-10'>
+                <div className='flex flex-wrap -mx-3'>
+                  {/* Name */}
+                  <div className='w-full md:w-2/3 px-3 mb-4'>
+                    <label className='text-xs px-1 text-black'>Name</label>
+                    <div className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 bg-gray-200 outline-none'>
+                      {state.data.name}
+                    </div>
+                  </div>
+
+                  {/* Phone Number */}
+                  <div className='w-full md:w-1/3 px-3 mb-4'>
+                    <label className='text-xs px-1 text-black'>Phone number</label>
+                    <div className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 bg-gray-200 outline-none'>
+                      {state.data.phone}
+                    </div>
+                  </div>
+                </div>
+
+                <div className='flex flex-wrap -mx-3'>
+                  {/* Email */}
+                  <div className='w-full md:w-1/3 px-3 mb-4'>
+                    <label className='text-xs px-1 text-black'>Email</label>
+                    <div className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 bg-gray-200 outline-none'>
+                      {state.data.email}
+                    </div>
+                  </div>
+
+                  {/* Position */}
+                  <div className='w-full md:w-1/3 px-3 mb-4'>
+                    <label className='text-xs px-1 text-black'>Position</label>
+                    <div className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 bg-gray-200 outline-none'>
+                      {state.data.position}
+                    </div>
+                  </div>
+
+                  {/* Salary */}
+                  <div className='w-full md:w-1/3 px-3 mb-4'>
+                    <label className='text-xs px-1 text-black'>Salary</label>
+                    <div className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 bg-gray-200 outline-none'>
+                      {state.data.salary}
+                    </div>
+                  </div>
+                </div>
+
+                <div className='flex flex-wrap -mx-3'>
+                  {/* Gender */}
+                  <div className='w-full sm:w-1/2 md:w-1/4 px-3 mb-4'>
+                    <label className='text-xs px-1 text-black'>Gender</label>
+                    <div className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-200 bg-gray-200 outline-none'>
+                      {state.data.gender}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Edit Button */}
+                <div className='flex justify-end mt-6'>
+                  <Link
+                    to={{
+                      pathname: `/staff/staffManagement/${match.params.id}/edit`,
+                      state: { data: state.data },
+                    }}
+                    className='bg-yellow-300 hover:bg-yellow-400 font-bold py-2 px-4 rounded inline-flex items-center'
+                  >
+                    <img className='w-8 h-10 py-1 -mr-3' src={EditIcon} alt='' />
+                    <div className='flex flex-col ml-5'>
+                      <h1 className='py-2 text-xl text-white'>Edit</h1>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
+
       </div>
     );
   }
