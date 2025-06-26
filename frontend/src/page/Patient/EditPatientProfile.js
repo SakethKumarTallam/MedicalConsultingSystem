@@ -395,81 +395,54 @@ const EditPatientProfile = () => {
         <form onSubmit={handleSubmit}>
           <div className='flex items-center justify-center pt-4 pb-10'>
             <div className='bg-gray-100 shadow-xl w-full overflow-hidden rounded-lg' style={{ maxWidth: '90%' }}>
-              <div className='md:flex w-full bg-white'>
+              <div className='w-full bg-white'>
                 <div className='w-full py-10 px-5 md:px-10'>
-                  <div className='flex -mx-3'>
-                    <div className='w-2/4 px-3 mb-2'>
+
+                  {/* Row 1 */}
+                  <div className='flex flex-wrap gap-4 mb-4'>
+                    <div className='w-full md:w-1/2'>
                       <label className='text-xs px-1 text-black'>Name</label>
-                      <input
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
-                      />
+                      <input value={name} onChange={(e) => setName(e.target.value)} className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500' />
                     </div>
-                    <div className='w-1/4 px-3 mb-2'>
+                    <div className='w-1/2 md:w-1/4'>
                       <label className='text-xs px-1 text-black'>Gender</label>
-                      <select
-                        value={gender}
-                        onChange={(e) => setGender(e.target.value)}
-                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
-                      >
+                      <select value={gender} onChange={(e) => setGender(e.target.value)} className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'>
                         <option value=''> </option>
                         <option>Male</option>
                         <option>Female</option>
                       </select>
                     </div>
-                    <div className='w-1/4 px-3 mb-2'>
+                    <div className='w-1/2 md:w-1/4'>
                       <label className='text-xs px-1 text-black'>Birth date</label>
-                      <input
-                        type='date'
-                        value={birthdate}
-                        onChange={(e) => setBirthdate(e.target.value)}
-                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
-                      />
+                      <input type='date' value={birthdate} onChange={(e) => setBirthdate(e.target.value)} className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500' />
                     </div>
                   </div>
-                  <div className='flex -mx-3'>
-                    <div className='w-1/3 px-3 mb-2'>
+
+                  {/* Row 2 */}
+                  <div className='flex flex-wrap gap-4 mb-4'>
+                    <div className='w-full md:w-1/3'>
                       <label className='text-xs px-1 text-black'>Email</label>
-                      <input
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
-                      />
+                      <input value={email} onChange={(e) => setEmail(e.target.value)} className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500' />
                     </div>
-                    <div className='w-1/3 px-3 mb-2'>
+                    <div className='w-full md:w-1/3'>
                       <label className='text-xs px-1 text-black'>Phone number</label>
-                      <input
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
-                      />
+                      <input value={phone} onChange={(e) => setPhone(e.target.value)} className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500' />
                     </div>
-                    <div className='w-1/3 px-3 mb-2'>
+                    <div className='w-full md:w-1/3'>
                       <label className='text-xs px-1 text-black'>ID card</label>
-                      <input
-                        value={idCard}
-                        onChange={(e) => setIdCard(e.target.value)}
-                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
-                      />
+                      <input value={idCard} onChange={(e) => setIdCard(e.target.value)} className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500' />
                     </div>
                   </div>
-                  <div className='flex -mx-3'>
-                    <div className='w-2/6 px-3 mb-2'>
+
+                  {/* Row 3 */}
+                  <div className='flex flex-wrap gap-4 mb-4'>
+                    <div className='w-full md:w-1/3 lg:w-1/4'>
                       <label className='text-xs px-1 text-black'>Allergy</label>
-                      <input
-                        value={allergy}
-                        onChange={(e) => setAllergy(e.target.value)}
-                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
-                      />
+                      <input value={allergy} onChange={(e) => setAllergy(e.target.value)} className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500' />
                     </div>
-                    <div className='w-1/6 px-3 mb-2'>
+                    <div className='w-1/2 md:w-1/6'>
                       <label className='text-xs px-1 text-black'>Blood type</label>
-                      <select
-                        value={bloodType}
-                        onChange={(e) => setBloodType(e.target.value)}
-                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
-                      >
+                      <select value={bloodType} onChange={(e) => setBloodType(e.target.value)} className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'>
                         <option value=''> </option>
                         <option>O</option>
                         <option>A</option>
@@ -477,49 +450,34 @@ const EditPatientProfile = () => {
                         <option>AB</option>
                       </select>
                     </div>
-                    <div className='w-2/6 px-3 mb-2'>
+                    <div className='w-full md:w-1/3 lg:w-1/4'>
                       <label className='text-xs px-1 text-black'>Relative</label>
-                      <input
-                        value={relative}
-                        onChange={(e) => setRelative(e.target.value)}
-                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
-                      />
+                      <input value={relative} onChange={(e) => setRelative(e.target.value)} className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500' />
                     </div>
-                    <div className='w-1/6 px-3 mb-2'>
+                    <div className='w-1/2 md:w-1/6'>
                       <label className='text-xs px-1 text-black'>Relative type</label>
-                      <input
-                        value={relativeType}
-                        onChange={(e) => setRelativeType(e.target.value)}
-                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
-                      />
+                      <input value={relativeType} onChange={(e) => setRelativeType(e.target.value)} className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500' />
                     </div>
                   </div>
-                  <div className='flex -mx-3'>
-                    <div className='w-2/4 px-3 mb-2'>
+
+                  {/* Row 4 */}
+                  <div className='flex flex-wrap gap-4 mb-4'>
+                    <div className='w-full md:w-2/3'>
                       <label className='text-xs px-1 text-black'>Current address</label>
-                      <input
-                        value={currentAddress}
-                        onChange={(e) => setCurrentAddress(e.target.value)}
-                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
-                      />
+                      <input value={currentAddress} onChange={(e) => setCurrentAddress(e.target.value)} className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500' />
                     </div>
-                    <div className='w-1/4 px-3 mb-2'>
+                    <div className='w-full md:w-1/3'>
                       <label className='text-xs px-1 text-black'>Relative Phone</label>
-                      <input
-                        value={relativePhone}
-                        onChange={(e) => setRelativePhone(e.target.value)}
-                        className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500'
-                      />
+                      <input value={relativePhone} onChange={(e) => setRelativePhone(e.target.value)} className='w-full pl-4 pr-3 py-2 rounded-lg border-2 border-gray-300 outline-none focus:border-indigo-500' />
                     </div>
                   </div>
+
+                  {/* Error and Submit */}
                   {error && (
                     <div className='text-center text-red-600'>{error.message}</div>
                   )}
                   <div className='flex justify-end'>
-                    <button
-                      type='submit'
-                      className='bg-green-600 hover:bg-green-700 font-bold py-2 px-4 mt-10 rounded inline-flex'
-                    >
+                    <button type='submit' className='bg-green-600 hover:bg-green-700 font-bold py-2 px-4 mt-10 rounded inline-flex'>
                       <img className='w-8 py-1 -mr-3' src={ConfirmIcon} alt='' />
                       <div className='flex flex-col ml-5'>
                         <h1 className='py-2 text-xl text-white'>Confirm</h1>
@@ -528,6 +486,7 @@ const EditPatientProfile = () => {
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </form>

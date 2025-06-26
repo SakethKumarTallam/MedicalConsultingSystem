@@ -236,19 +236,19 @@ const PatientProfile = () => {
             style={{ maxWidth: '90%' }}
           >
             <div className='md:flex w-full bg-white'>
-              <div className='w-full py-10 px-5 md:px-10'>
+              <div className='w-full py-10 px-4 md:px-10'>
 
                 {/* Name, Gender, Birthdate */}
-                <div className='flex -mx-3'>
-                  <div className='w-2/4 px-3 mb-2'>
+                <div className='flex flex-wrap -mx-2'>
+                  <div className='w-full md:w-1/2 px-2 mb-4'>
                     <label className='text-xs px-1 text-black'>Name</label>
                     <div className='bg-gray-200 field-box'>{data.name}</div>
                   </div>
-                  <div className='w-1/4 px-3 mb-2'>
+                  <div className='w-1/2 md:w-1/4 px-2 mb-4'>
                     <label className='text-xs px-1 text-black'>Gender</label>
                     <div className='bg-gray-200 field-box'>{data.gender || 'Not set'}</div>
                   </div>
-                  <div className='w-1/4 px-3 mb-2'>
+                  <div className='w-1/2 md:w-1/4 px-2 mb-4'>
                     <label className='text-xs px-1 text-black'>Birth date</label>
                     <div className='bg-gray-200 field-box'>
                       {data.birthdate ? data.birthdate.split('T')[0] : 'Not set'}
@@ -257,16 +257,16 @@ const PatientProfile = () => {
                 </div>
 
                 {/* Email, Phone, ID card */}
-                <div className='flex -mx-3'>
-                  <div className='w-1/3 px-3 mb-2'>
+                <div className='flex flex-wrap -mx-2'>
+                  <div className='w-full md:w-1/3 px-2 mb-4'>
                     <label className='text-xs px-1 text-black'>Email</label>
                     <div className='bg-gray-200 field-box'>{data.email}</div>
                   </div>
-                  <div className='w-1/3 px-3 mb-2'>
+                  <div className='w-full md:w-1/3 px-2 mb-4'>
                     <label className='text-xs px-1 text-black'>Phone number</label>
-                    <div className='bg-gray-200 field-box'>{data.phone}</div>
+                    <div className='bg-gray-200 field-box'>{data.phone || 'Not set'}</div>
                   </div>
-                  <div className='w-1/3 px-3 mb-2'>
+                  <div className='w-full md:w-1/3 px-2 mb-4'>
                     <label className='text-xs px-1 text-black'>ID card</label>
                     <div className='bg-gray-200 field-box'>
                       {data.IDcard || 'Not set'}
@@ -275,26 +275,26 @@ const PatientProfile = () => {
                 </div>
 
                 {/* Allergy, Blood Type, Relative Info */}
-                <div className='flex -mx-3'>
-                  <div className='w-2/6 px-3 mb-2'>
+                <div className='flex flex-wrap -mx-2'>
+                  <div className='w-full md:w-2/6 px-2 mb-4'>
                     <label className='text-xs px-1 text-black'>Allergy</label>
                     <div className='bg-gray-200 field-box'>
                       {data.allergy || 'None'}
                     </div>
                   </div>
-                  <div className='w-1/6 px-3 mb-2'>
+                  <div className='w-1/2 md:w-1/6 px-2 mb-4'>
                     <label className='text-xs px-1 text-black'>Blood type</label>
                     <div className='bg-gray-200 field-box'>
                       {data.bloodType || 'Not set'}
                     </div>
                   </div>
-                  <div className='w-2/6 px-3 mb-2'>
+                  <div className='w-full md:w-2/6 px-2 mb-4'>
                     <label className='text-xs px-1 text-black'>Relative</label>
                     <div className='bg-gray-200 field-box'>
                       {data.relative?.name || 'None'}
                     </div>
                   </div>
-                  <div className='w-1/6 px-3 mb-2'>
+                  <div className='w-1/2 md:w-1/6 px-2 mb-4'>
                     <label className='text-xs px-1 text-black'>Relative type</label>
                     <div className='bg-gray-200 field-box'>
                       {data.relative?.relativeType || 'None'}
@@ -303,14 +303,14 @@ const PatientProfile = () => {
                 </div>
 
                 {/* Address and Relative Phone */}
-                <div className='flex -mx-3'>
-                  <div className='w-2/4 px-3 mb-2'>
+                <div className='flex flex-wrap -mx-2'>
+                  <div className='w-full md:w-3/4 px-2 mb-4'>
                     <label className='text-xs px-1 text-black'>Current address</label>
                     <div className='bg-gray-200 field-box'>
                       {data.currentAddress || 'None'}
                     </div>
                   </div>
-                  <div className='w-1/4 px-3 mb-2'>
+                  <div className='w-full md:w-1/4 px-2 mb-4'>
                     <label className='text-xs px-1 text-black'>Relative Phone number</label>
                     <div className='bg-gray-200 field-box'>
                       {data.relative?.phoneNumber || 'None'}
@@ -319,9 +319,9 @@ const PatientProfile = () => {
                 </div>
 
                 {/* Edit button */}
-                <div className='flex justify-end'>
+                <div className='flex justify-end mt-4'>
                   <Link
-                    className='bg-yellow-300 hover:bg-yellow-400 font-bold py-2 px-4 mt-10 rounded inline-flex'
+                    className='bg-yellow-300 hover:bg-yellow-400 font-bold py-2 px-4 rounded inline-flex'
                     to={{
                       pathname: '/patient/profile/edit',
                       state: { data },
@@ -336,6 +336,7 @@ const PatientProfile = () => {
 
               </div>
             </div>
+
           </div>
         </div>
       </div>

@@ -38,7 +38,7 @@ function Home() {
   } else if (!onlineDoc.isPending && onlineDoc.data !== null && onlineDoc.data.length === 0 && type === 'All' && search === '') {
     return (
       <div className='flex justify-center items-center mt-52'>
-        <h1 className='font-fontPro text-4xl text-gray-700'>There is no online doctor at this moment.</h1>
+        <h1 className='font-fontPro text-4xl text-gray-700 text-center'>There is no online doctor at this moment.</h1>
       </div>
     );
   } else {
@@ -102,7 +102,7 @@ function Home() {
         </form>
 
         {onlineDoc.data.length === 0 && <div className='flex justify-center items-center mt-32'>
-        <h1 className='font-fontPro text-3xl text-gray-700'>Can't find any doctor that you are looking for</h1>
+        <h1 className='font-fontPro text-3xl text-gray-700 text-center'>Can't find any doctor that you are looking for</h1>
       </div>}
         <div className='my-10 mx-auto max-w-7xl w-full px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7'>
           
