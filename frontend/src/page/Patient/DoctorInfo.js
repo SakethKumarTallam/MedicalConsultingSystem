@@ -1,23 +1,23 @@
 // Doctor infomation page. Page for patient to view doctor information
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import io from 'socket.io-client';
-import {useHistory, useLocation} from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import HospitalIcon from '../../img/hospital.png';
 import StudyIcon from '../../img/graduation-cap.png';
 import PhoneIcon from '../../img/phone.png';
 import Medicalreport from '../../img/medical-report.png';
 import VideoCameraIcon from '../../img/video-camera.png';
-import {useFetchUser} from '../../context/userContext';
+import { useFetchUser } from '../../context/userContext';
 
-const DoctorInfo = ({match}) => {
+const DoctorInfo = ({ match }) => {
   const [socket, setSocket] = useState(null); // socket.io
   const [onlineDoc, setOnlineDoc] = useState(null); // doctor information
   const [fetchFail, setFetchFail] = useState(false); // condition of fectching doctor data
 
   const history = useHistory();
   const location = useLocation();
-  const {data} = location.state; // doctor data from the home page
-  const {state} = useFetchUser(); // User data
+  const { data } = location.state; // doctor data from the home page
+  const { state } = useFetchUser(); // User data
 
   useEffect(() => {
     const newSocket = io(process.env.REACT_APP_SOCKET_URL); // connect socket
@@ -28,13 +28,13 @@ const DoctorInfo = ({match}) => {
         newSocket.disconnect();
         history.push({
           pathname: `/call/${match.params.id}`,
-          state: {type: 'patient', user: 'Not a doctor'},
+          state: { type: 'patient', user: 'Not a doctor' },
         });
       } else {
         setFetchFail(true);
       }
     });
-    
+
   }, [setSocket, history, match.params.id]);
 
   // doctor is not avaliable
@@ -121,7 +121,7 @@ const DoctorInfo = ({match}) => {
           <span> Back</span>
         </button>
       </div>
-      <div className='flex justify-center px-20 py-2 mb-2'>
+      {/* <div className='flex justify-center px-20 py-2 mb-2'>
         <div className='w-1/3 bg-gray-200 py-10'>
           <div className='w-full px-20 py-5'>
             <img
@@ -197,7 +197,86 @@ const DoctorInfo = ({match}) => {
             </div>
           </div>
         </div>
+      </div> */}
+      <div className='flex flex-wrap justify-center px-4 md:px-10 py-4 gap-6'>
+        {/* Doctor Image + Name Card */}
+        <div className='w-full md:w-1/3 bg-gray-200 rounded-lg shadow-md'>
+          <div className='w-full flex justify-center px-6 pt-6'>
+            <img
+              className='object-cover object-center rounded-full w-40 h-40 border-solid border-white border-4'
+              src={data.photo}
+              alt='docpic'
+            />
+          </div>
+          <div className='text-center text-xl pt-4'>
+            <h1>{data.name}</h1>
+          </div>
+          <div className='flex justify-center mt-2 mb-6'>
+            <h1
+              className={`text-sm font-medium text-gray-700 bg-${colorDoc(data)} inline-block px-2 py-1 rounded-md`}
+            >
+              {data.specialization.specialization}
+            </h1>
+          </div>
+        </div>
+
+        {/* Doctor Details Card */}
+        <div className='w-full md:w-2/3 bg-white shadow-xl rounded-lg overflow-hidden'>
+          <div className='w-full py-8 px-5 md:px-10'>
+
+            {/* Hospital */}
+            <div className='flex items-center py-2'>
+              <img className='h-8 w-8' src={HospitalIcon} alt='Hospital' />
+              <div className='flex flex-col ml-4'>
+                <h1 className='text-base md:text-xl'>Hospital: {data.hospital}</h1>
+              </div>
+            </div>
+
+            {/* Education */}
+            <div className='flex items-center py-2'>
+              <img className='h-8 w-8' src={StudyIcon} alt='Education' />
+              <div className='flex flex-col ml-4'>
+                <h1 className='text-base md:text-xl'>Background: {data.background}</h1>
+              </div>
+            </div>
+
+            {/* Phone */}
+            <div className='flex items-center py-2'>
+              <img className='h-8 w-8' src={PhoneIcon} alt='Phone' />
+              <div className='flex flex-col ml-4'>
+                <h1 className='text-base md:text-xl'>Phone number: {data.phone}</h1>
+              </div>
+            </div>
+
+            {/* Specialization Detail */}
+            <div className='flex items-center py-2'>
+              <img className='h-8 w-8' src={Medicalreport} alt='Medical record' />
+              <div className='flex flex-col ml-4'>
+                <h1 className='text-base md:text-xl'>Specialization Detail:</h1>
+              </div>
+            </div>
+
+            {/* Specialization Text */}
+            <div className='mt-2 ml-12 text-gray-700'>
+              <p className='text-sm md:text-base break-words'>
+                {data.specializationDetail}
+              </p>
+            </div>
+
+            {/* Call Button */}
+            <div className='flex justify-center mt-8'>
+              <button
+                onClick={callDoctor}
+                className='bg-green-400 hover:bg-green-500 font-bold py-2 px-4 rounded inline-flex items-center'
+              >
+                <img className='h-8 w-8' src={VideoCameraIcon} alt='' />
+                <span className='ml-3 text-white text-lg'>Call</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
   );
 };
